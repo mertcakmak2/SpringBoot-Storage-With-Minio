@@ -47,7 +47,7 @@ public class MinioAdapter {
         }
     }
 
-    public byte[] getObject(String objectName) {
+    public byte[] getFile(String objectName) {
         try {
             InputStream file = minioClient.getObject(defaultBucketName,objectName);
             return file.readAllBytes();

@@ -1,7 +1,6 @@
 package com.mert.minio.controller;
 
 import com.mert.minio.adapter.MinioAdapter;
-import io.minio.messages.Bucket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/storage")
@@ -22,7 +20,7 @@ public class StorageController {
 
     @GetMapping(path = "/object/{objectName}")
     public ResponseEntity<Resource> getBucketsImages(@PathVariable String objectName) {
-        var data = minioAdapter.getObject(objectName);
+        var data = minioAdapter.getFile(objectName);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
                 .contentLength(data.length)
